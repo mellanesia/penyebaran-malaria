@@ -16,7 +16,7 @@ class Rw extends Model
 
     public function kelurahan(): BelongsTo
     {
-        return $this->belongsTo(kelurahan::class, 'id_kelurahan');
+        return $this->belongsTo(Kelurahan::class, 'id_kelurahan');
     }
 
 }
