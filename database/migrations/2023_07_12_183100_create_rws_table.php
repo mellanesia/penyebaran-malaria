@@ -19,12 +19,12 @@ return new class extends Migration
             $table->string('nama_rw')->nullable();
             $table->text('kepala_rw')->nullable();
             $table->text('jumlah_penduduk')->nullable();
+            $table->text('jumlah_kasus')->nullable();
             $table->text('google_map_embed_script')->nullable();
             $table->text('latitude')->nullable();
-            $table->text('Longitude')->nullable();
-
+            $table->text('longitude')->nullable();
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
-
+            $table->foreignId('id_kelurahan')->constrained('kelurahans')->cascadeOnDelete();
             $table->timestamps();
             $table->softDeletes();
         });

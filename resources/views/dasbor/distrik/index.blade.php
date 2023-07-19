@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="py-5">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 @include('dasbor.partials.left-sidebar')
                 <!-- .col end -->
@@ -13,7 +13,7 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h3>Distrik</h3>
-                                    <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error soluta illum asperiores at modi eos.</p>
+                                    <p class="text-muted">Data Distrik</p>
                                 </div>
                             </div>
                         </div>
@@ -29,10 +29,10 @@
                                     </a>
                                 </div>
                                 <div class="card-body">
-                                    
+
                                     <!-- .table-responsive start -->
                                     <div class="table-responsive">
-                                        
+
                                         <table class="table table-borderles">
                                             <thead>
                                                 <tr>
@@ -66,7 +66,7 @@
                                                         </form>
                                                     </td>
                                                 </tr>
-                                                    
+
                                                 @endforeach
                                             </tbody>
                                         </table>

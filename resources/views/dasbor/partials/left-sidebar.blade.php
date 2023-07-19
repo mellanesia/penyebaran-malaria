@@ -12,8 +12,8 @@
         <a href="{{ url('dasbor/rw') }}" class="list-group-item list-group-item-action @if(Request::segment(2) == 'rw') bg-success text-light @endif">
             <i class="fa-solid fa-table"></i> RW
         </a>
-        <a href="{{ url('dasbor/pengguna') }}" class="list-group-item list-group-item-action @if(Request::segment(2) == 'pengguna') bg-success text-light @endif">
+        {{-- <a href="{{ url('dasbor/pengguna') }}" class="list-group-item list-group-item-action @if(Request::segment(2) == 'pengguna') bg-success text-light @endif">
             <i class="fa-solid fa-users"></i> Pengguna
-        </a>
+        </a> --}}
     </div>
 </div>

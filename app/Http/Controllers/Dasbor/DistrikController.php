@@ -28,6 +28,7 @@ class DistrikController extends Controller
         $jumlahdraft = Distrik::where('status', 'Draft')->count();
         $datapublish = Distrik::where('status', 'Publish')->count();
 
+
         return view('dasbor.distrik.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
@@ -65,14 +66,14 @@ class DistrikController extends Controller
         $data->status = $request->status;
 
         // proses simpan
-        $data->save(); 
+        $data->save();
 
         // menampilkan notifikasi alert
-        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);   
-        
+        alert()->success('Berhasil', 'Data telah ditambahkan')->autoclose(1100);
+
         // mengalihkan halaman
         return redirect('dasbor/distrik/show/' . Distrik::find($data->id)->id);
-        
+
     }
 
     /**
@@ -124,11 +125,11 @@ class DistrikController extends Controller
         $data->status = $request->status;
 
         // proses simpan
-        $data->update(); 
+        $data->update();
 
         // menampilkan notifikasi alert
-        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);   
-        
+        alert()->success('Berhasil', 'Data telah diubah')->autoclose(1100);
+
         // mengalihkan halaman
         return redirect('dasbor/distrik/show/' . $request->id);
     }

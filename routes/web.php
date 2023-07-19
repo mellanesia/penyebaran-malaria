@@ -89,15 +89,22 @@ Route::group(['prefix' => 'laravel-filemanager', 'middleware' => ['web', 'auth']
 
 Route::group(['prefix' => '/dasbor', 'middleware' => ['web', 'auth']], function () {
 
-        Route::get('/', [DasborController::class, 'index'])->name('dasbor');
+    Route::get('/', [DasborController::class, 'index'])->name('dasbor');
 
-        // ADMIN
-        Route::group(['middleware' => ['role:administrator']], function () {
+    // ADMIN
+    Route::group(['middleware' => ['role:administrator']], function () {
 
-
-        });
 
     });
+
+});
+
+
+/*
+| Google Maps
+|
+*/
+Route::get('/json', [DasborController::class, 'json'])->name('beranda');
 
 require_once 'dasbor.php';
 

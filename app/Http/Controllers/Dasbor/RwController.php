@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Dasbor;
 use App\Http\Controllers\Controller;
 use App\Models\Rw;
+use App\Models\Kelurahan;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class RwController extends Controller
 {
@@ -23,7 +27,7 @@ class RwController extends Controller
                         ->get();
                 }
             }]
-        ])->where('status', 'Publish')->orderBy('nama_rw', 'asc')->paginate(5);
+        ])->orderBy('nama_rw', 'asc')->paginate(5);
         $jumlahtrash = Rw::onlyTrashed()->count();
         $jumlahdraft = Rw::where('status', 'Draft')->count();
         $datapublish = Rw::where('status', 'Publish')->count();
@@ -38,7 +42,8 @@ class RwController extends Controller
      */
     public function create()
     {
-        //
+        $kelurahan = Kelurahan::where('status', 'Publish')->get();
+        return view('dasbor.rw.create',compact('kelurahan'));
     }
 
     /**
@@ -49,7 +54,55 @@ class RwController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'nama_rw'      => 'required',
+                'kepala_rw'      => 'required',
+                'jumlah_penduduk'      => 'required',
+                'jumlah_kasus'      => 'required',
+                'google_map_embed_script'      => 'required',
+                'latitude'      => 'required',
+                'longitude'      => 'required',
+                'id_kelurahan'      => 'required',
+                'status'      => 'required',
+            ],
+            [
+                'nama_rw.required' => 'Nama RW tidak boleh kosong!',
+                'kepala_rw.required' => 'Nama Kepala Kelurahan tidak boleh kosong!',
+                'jumlah_penduduk.required' => 'Jumlah Penduduk tidak boleh kosong!',
+                'google_map_embed_script.required' => 'Google Map Embed Scipt tidak boleh kosong!',
+                'latitude.required' => 'Latitude tidak boleh kosong!',
+                'longitude.required' => 'Longitude Kelurahan tidak boleh kosong!',
+                'jumlah_kasus.required' => 'Jumlah Kasus tidak boleh kosong!',
+                // 'deskripsi.required' => 'Deskripsi Kategori tidak boleh kosong!',
+                // 'deskripsi.max' => 'Deskripsi Kategori maximal 255 karekter!',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        } else {
+            try {
+                $rw = new Rw();
+                $rw->nama_rw        = $request->nama_rw;
+                $rw->kepala_rw  = $request->kepala_rw;
+                $rw->jumlah_penduduk   = $request->jumlah_penduduk;
+                $rw->latitude          = $request->latitude;
+                $rw->longitude         = $request->longitude;
+                $rw->id_kelurahan        = $request->id_kelurahan;
+                $rw->google_map_embed_script        = $request->google_map_embed_script;
+                $rw->status            = $request->status;
+                $rw->jumlah_kasus            = $request->jumlah_kasus;
+                $rw->save();
+                Alert::toast('Data Berhasil dibuat!', 'success');
+                return redirect('dasbor/rw');
+
+            } catch (\Throwable $th) {
+                Alert::toast('Gagal', 'error');
+                return redirect()->back();
+            }
+        }
     }
 
     /**
@@ -58,9 +111,11 @@ class RwController extends Controller
      * @param  \App\Models\Rw  $rw
      * @return \Illuminate\Http\Response
      */
-    public function show(Rw $rw)
+    public function show($rw)
     {
-        //
+
+        $data = RW::where('id', $rw)->first();
+        return view('dasbor.rw.show',compact('data'));
     }
 
     /**
@@ -69,9 +124,11 @@ class RwController extends Controller
      * @param  \App\Models\Rw  $rw
      * @return \Illuminate\Http\Response
      */
-    public function edit(Rw $rw)
+    public function edit($rw)
     {
-        //
+        $data = RW::where('id', $rw)->first();
+        $kelurahan = Kelurahan::where('status', 'Publish')->get();
+        return view('dasbor.rw.edit',compact('data','kelurahan'));
     }
 
     /**
@@ -81,9 +138,58 @@ class RwController extends Controller
      * @param  \App\Models\Rw  $rw
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Rw $rw)
+    public function update(Request $request, $rw)
     {
-        //
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'nama_rw'      => 'required',
+                'kepala_rw'      => 'required',
+                'jumlah_penduduk'      => 'required',
+                'google_map_embed_script'      => 'required',
+                'latitude'      => 'required',
+                'longitude'      => 'required',
+                'id_kelurahan'      => 'required',
+                'status'      => 'required',
+                'jumlah_kasus'      => 'required',
+            ],
+            [
+                'nama_rw.required' => 'Nama RW tidak boleh kosong!',
+                'kepala_rw.required' => 'Nama Kepala Kelurahan tidak boleh kosong!',
+                'jumlah_penduduk.required' => 'Jumlah Penduduk tidak boleh kosong!',
+                'google_map_embed_script.required' => 'Google Map Embed Scipt tidak boleh kosong!',
+                'latitude.required' => 'Latitude tidak boleh kosong!',
+                'longitude.required' => 'Longitude Kelurahan tidak boleh kosong!',
+                'jumlah_kasus.required' => 'Jumlah Kasus tidak boleh kosong!',
+
+                // 'deskripsi.required' => 'Deskripsi Kategori tidak boleh kosong!',
+                // 'deskripsi.max' => 'Deskripsi Kategori maximal 255 karekter!',
+            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()->back()->withInput($request->all())->withErrors($validator);
+        } else {
+            try {
+                $rw = Rw::find($rw);
+                $rw->nama_rw        = $request->nama_rw;
+                $rw->kepala_rw  = $request->kepala_rw;
+                $rw->jumlah_penduduk   = $request->jumlah_penduduk;
+                $rw->latitude          = $request->latitude;
+                $rw->longitude         = $request->longitude;
+                $rw->id_kelurahan        = $request->id_kelurahan;
+                $rw->google_map_embed_script        = $request->google_map_embed_script;
+                $rw->status            = $request->status;
+                $rw->jumlah_kasus            = $request->jumlah_kasus;
+
+                $rw->update();
+                Alert::toast('Data Berhasil dibuat!', 'success');
+                return redirect('dasbor/rw');
+            } catch (\Throwable $th) {
+                Alert::toast('Gagal', 'error');
+                return redirect()->back();
+            }
+        }
     }
 
     /**
@@ -92,8 +198,11 @@ class RwController extends Controller
      * @param  \App\Models\Rw  $rw
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Rw $rw)
+    public function destroy($rw)
     {
-        //
+        $data = RW::find($rw);
+        $data->delete();
+        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
+        return redirect()->route('dasbor.rw.index');
     }
 }

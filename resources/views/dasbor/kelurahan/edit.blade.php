@@ -1,116 +1,180 @@
 @extends('dasbor.layout.app')
 @section('content')
 
-                        @include('dasbor.layout.includes.breadcrumb3')
-    
-                        {!! Form::model($data, array( 'url'=>'dasbor/program/'. $data->id, 'method'=>'put','files'=>'true'))!!}
-                        @csrf
+    <section class="py-5">
+        <div class="container-fluid">
+            <div class="row">
+                @include('dasbor.partials.left-sidebar')
+                <!-- .col end -->
 
-                        <div class="row">
-                            <div class="col-lg-12">
+                <div class="col-md-10">
+                    <div class="row mb-3">
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body">
+                                    <h3 class="text-capitalize">Ubah {{ Request::segment(2) }}</h3>
+                                    {{-- <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error soluta illum asperiores at modi eos.</p> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- .row end -->
+
+                    <div class="row mb-3">
+                        <div class="col">
+
+                            <form action="{{ route('dasbor.kelurahan.update', $data->id) }}" method="POST" enctype="multipart/form-data">
+                            @csrf
+                            @method('put')
+
+
                                 <div class="card">
                                     <div class="card-body">
-                                        <h5 class="text-uppercase bg-light p-2 mt-0 mb-3">FORM</h5>
 
-                                        <div class="mb-3">
-                                            <label for="program_title" class="form-label">Program Title <span class="text-danger">*</span></label>
-                                            <input type="text" name="program_title" id="program_title" value="{{ old('program_title') ?? $data->program_title }}" placeholder="Program Title" class="form-control">
-                                            @if ($errors->has('program_title'))
-                                                <span class="text-danger" role="alert">
-                                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('program_title') }}</small>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <!-- input group end -->
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <!-- .table-responsive start -->
+                                                <div class="table-responsive">
 
-                                        <div class="mb-3">
-                                            <label for="short_description" class="form-label">Short Description</label>
-                                            <textarea name="short_description" id="short_description" cols="30" rows="3" class="form-control">{{ old('short_description') ?? $data->short_description }}</textarea>
-                                            @if ($errors->has('short_description'))
-                                                <span class="text-danger" role="alert">
-                                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('short_description') }}</small>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <!-- input group end -->
+                                                    <div class="mb-3">
+                                                        <label for="">Nama Kelurahan <span class="text-danger">*</span></label>
+                                                        <input type="text" id="nama_kelurahan" name="nama_kelurahan" class="form-control" value="{{ old('nama_kelurahan') ?? $data->nama_kelurahan ?? '' }}">
 
-                                        <div class="form-group">
-                                            <label for="full_description" class="form-label">Full Description</label>
-                                            <textarea name="full_description" id="ckeditor" class="ckeditor form-control" rows="30" placeholder="Full Description">{{ old('konten') ?? $data->full_description }}</textarea>
-                                            @if ($errors->has('full_description'))
-                                                <span class="text-danger" role="alert">
-                                                    <small class="pt-1 d-block"><i class="fe-alert-triangle mr-1"></i> {{ $errors->first('full_description') }}</small>
-                                                </span>
-                                            @endif
-                                        </div>
-                                        <!-- input item end-->
+                                                        @if ($errors->has('nama_kelurahan'))
+                                                            <span class="text-danger" role="alert">
+                                                                <small>{{ $errors->first('nama_kelurahan') }}</small>
+                                                            </span>
+                                                        @endif
+                                                        <!-- error message end -->
+                                                    </div>
 
-                                        <div class="mb-3">
-                                            <select class="custom-select" name="status">
-                                                <option value="Draft" @if($data->status == 'Draft') selected @endif>Draft</option>
-                                                <option value="Publish" @if($data->status == 'Publish') selected @endif>Publish</option>
-                                                </select>
+                                                    <!-- .input item end -->
+                                                    <div class="mb-3">
+                                                        <label for="">Nama Kepala Kelurahan <span class="text-danger"></span></label>
+                                                        <input type="text" id="kepala_kelurahan" name="kepala_kelurahan" class="form-control" value="{{ old('kepala_kelurahan') ?? $data->kepala_kelurahan ?? '' }}">
+
+                                                        @if ($errors->has('kepala_kelurahan'))
+                                                            <span class="text-danger" role="alert">
+                                                                <small>{{ $errors->first('kepala_kelurahan') }}</small>
+                                                            </span>
+                                                        @endif
+                                                        <!-- error message end -->
+                                                    </div>
+                                                    <!-- .input item end -->
+
+                                                    <div class="mb-3">
+                                                        <label for="">Jumlah Penduduk</label>
+                                                        <input type="text" id="jumlah_penduduk" name="jumlah_penduduk" class="form-control" value="{{ old('jumlah_penduduk') ?? $data->jumlah_penduduk ?? '' }}">
+
+                                                        @if ($errors->has('jumlah_penduduk'))
+                                                            <span class="text-danger" role="alert">
+                                                                <small>{{ $errors->first('jumlah_penduduk') }}</small>
+                                                            </span>
+                                                        @endif
+                                                        <!-- error message end -->
+                                                    </div>
+                                                    <!-- .input item end -->
+
+                                                    <div class="mb-3">
+                                                      <label for="google_map_embed_script" class="form-label">Google Map Embed Ccript</label>
+                                                      <textarea class="form-control" name="google_map_embed_script" id="google_map_embed_script" rows="2">{{ old('google_map_embed_script') ?? $data->google_map_embed_script ?? '' }}</textarea>
+
+                                                      @if ($errors->has('google_map_embed_script'))
+                                                      <span class="text-danger" role="alert">
+                                                          <small>{{ $errors->first('google_map_embed_script') }}</small>
+                                                      </span>
+                                                      @endif
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="latitude">Latitude <span class="text-danger">*</span></label>
+                                                        <input type="text" id="latitude" name="latitude" class="form-control" value="{{ old('latitude') ?? $data->latitude ?? '' }}">
+
+                                                        @if ($errors->has('latitude'))
+                                                            <span class="text-danger" role="alert">
+                                                                <small>{{ $errors->first('latitude') }}</small>
+                                                            </span>
+                                                        @endif
+                                                        <!-- error message end -->
+                                                    </div>
+
+                                                    <div class="mb-3">
+                                                        <label for="longitude">Longitude <span class="text-danger">*</span></label>
+                                                        <input type="text" id="longitude" name="longitude" class="form-control" value="{{ old('longitude') ?? $data->longitude ?? '' }}">
+
+                                                        @if ($errors->has('longitude'))
+                                                            <span class="text-danger" role="alert">
+                                                                <small>{{ $errors->first('longitude') }}</small>
+                                                            </span>
+                                                        @endif
+                                                        <!-- error message end -->
+                                                    </div>
+
+
+                                                    <div class="mb-3">
+                                                        <label for="id_distrik" class="form-label d-block">Distrik</label>
+                                                        <select class="form-control" name="id_distrik" id="exampleFormControlSelect1">
+                                                            @foreach($distrik as $d)
+                                                                @if($d->id == $data->distrik->id)
+                                                                    <option selected value="{{$d->id}}"> {{$d->nama_distrik}}</option>
+
+                                                                @else
+                                                                    <option value="{{$d->id}}"> {{$d->nama_distrik}}</option>
+                                                                @endif
+                                                            @endforeach
+                                                        </select>
+
+                                                        @if ($errors->has('id_distrik'))
+                                                            <span class="text-danger" role="alert">
+                                                                <small>{{ $errors->first('id_distrik') }}</small>
+                                                            </span>
+                                                        @endif
+                                                        <!-- error message end -->
+                                                    </div>
+                                                    <!-- input item end -->
+
+
+                                                    <div class="mb-3">
+                                                        <label for="status" class="form-label d-block">Status</label>
+                                                        <select class="form-control" name="status" id="exampleFormControlSelect1">
+                                                            <option value="Draft" @if($d->status == 'Draft') Selected @endif>Draft</option>
+                                                            <option value="Publish" @if($d->status == 'Publish') Selected @endif>Publish</option>
+                                                        </select>
+
+                                                        @if ($errors->has('status'))
+                                                            <span class="text-danger" role="alert">
+                                                                <small>{{ $errors->first('status') }}</small>
+                                                            </span>
+                                                        @endif
+                                                        <!-- error message end -->
+                                                    </div>
+                                                    <!-- input item end -->
+
+                                                </div>
+                                                <!-- .table-responsive end -->
+                                            </div>
                                         </div>
-                                        <!-- input group end -->
 
                                     </div>
-                                </div> <!-- end card -->
-                            </div> <!-- end col -->
+                                    <div class="card-footer">
+                                        <button type="submit" class="btn btn-dark">
+                                            Simpan
+                                        </button>
+                                    </div>
+                                </div>
+
+                            </form>
+                            <!-- form end -->
+
                         </div>
-                        <!-- end row -->
+                    </div>
+                    <!-- .row end -->
 
-                        @include('dasbor.layout.includes.form-input.submit-button')
+                </div>
+                <!-- .col end -->
+            </div>
+            <!-- .row end -->
+        </div>
+    </section>
 
-                        {!! Form::close() !!}
-                        @stop
-
-@push('script-header')
-<!-- Plugins css-->
-<link href="{{ asset('assets/admin/assets/libs/select2/css/select2.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/admin/assets/libs/quill/quill.core.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ asset('assets/admin/assets/libs/quill/quill.snow.css')}}" rel="stylesheet" type="text/css" />
-@endpush
-
-@push('script-footer')
-<!-- Select2 js-->
-<script src="{{ asset('assets/admin/assets/libs/select2/js/select2.min.js')}}"></script>
-<!-- Quill js -->
-<script src="{{ asset('assets/admin/assets/libs/quill/quill.min.js')}}"></script>
-<!-- Init js -->
-<script src="{{ asset('assets/admin/assets/js/pages/add-product.init.js')}}"></script>
-<!-- Init js-->
-<script src="{{ asset('assets/admin/assets/js/pages/form-fileuploads.init.js')}}"></script>
-
-<script src="//cdn.ckeditor.com/4.6.2/standard/ckeditor.js"></script>
-<script>
-    var options = {
-      filebrowserImageBrowseUrl: '/laravel-filemanager?type=Images',
-      filebrowserImageUploadUrl: '/laravel-filemanager/upload?type=Images&_token=',
-      filebrowserBrowseUrl: '/laravel-filemanager?type=Files',
-      filebrowserUploadUrl: '/laravel-filemanager/upload?type=Files&_token='
-    };
-
-</script>
-<script type="text/javascript">
-    CKEDITOR.replace('ckeditor', options);
-    CKEDITOR.config.height='600px';
-</script>
-
-<script type="text/javascript">
-    $(document).ready(function () {
-        $('.ckeditor').ckeditor();
-    });
-    $(document).ready(function (e) {
-               $('#gambar').change(function(){
-                let reader = new FileReader();
-                reader.onload = (e) => {
-                  $('#preview-gambar').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(this.files[0]);
-               });
-
-            });
-
-    CKEDITOR.config.height='600px';
-</script>
-@endpush
+  @stop

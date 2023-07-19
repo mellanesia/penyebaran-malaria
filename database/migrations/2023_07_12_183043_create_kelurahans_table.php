@@ -21,10 +21,12 @@ return new class extends Migration
             $table->text('jumlah_penduduk')->nullable();
             $table->text('google_map_embed_script')->nullable();
             $table->text('latitude')->nullable();
-            $table->text('Longitude')->nullable();
+            $table->text('longitude')->nullable();
 
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
-
+            // $table->unsignedBigInteger('id_distrik');
+            $table->foreignId('id_distrik')->constrained('distriks')->cascadeOnDelete();
+            // $table->foreign('id_distrik')->references('id')->on('distriks')->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();
         });
