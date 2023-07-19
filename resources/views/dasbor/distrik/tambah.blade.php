@@ -25,7 +25,6 @@
 
                             <form action="{{ route('dasbor.distrik.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
-
                                 <div class="card">
                                     <div class="card-body">
                                         
@@ -63,17 +62,22 @@
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div>                               
+                                    <!-- .card-body end -->
+
                                     <div class="card-footer">
                                         <a href="{{ url(Request::segment(1) .'/'. Request::segment(2)) }}" 
                                             class="btn btn-outline-dark">
                                             <i class="fa-solid fa-arrow-left"></i> ke Halaman {{ Str::title(Request::segment(2)) }}
                                         </a>
-                                        <button class="btn btn-dark">
+                                        <button class="btn btn-success">
                                             <i class="fa-solid fa-save"></i> Simpan
                                         </button>
-                                    </div>
-                                </div>
+                                    </div>                               
+                                    <!-- .card-footer end -->
+
+                                </div>                                
+                                <!-- .card end -->
 
                             </form>
                             <!-- form end -->

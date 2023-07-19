@@ -20,7 +20,7 @@ class DistrikController extends Controller
                     $query->orWhere('nama_distrik', 'LIKE', '%' . $s . '%')->get();
                 }
             }]
-        ])->orderBy('nama_distrik', 'asc')->paginate(10);
+        ])->orderBy('nama_distrik', 'asc')->paginate(5);
 
         return view('dasbor.distrik.index', compact('datas'))->with('i', (request()->input('page', 1) - 1) * 5);
     }

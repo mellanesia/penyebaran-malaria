@@ -2,11 +2,9 @@
 
 namespace Database\Seeders;
 
+use Illuminate\Database\Seeder;
 use App\Models\Rw;
 use Carbon\Carbon;
-
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 
 class RwSeeder extends Seeder
 {
@@ -17,17 +15,15 @@ class RwSeeder extends Seeder
      */
     public function run()
     {
+        // Kelurahan A
         Rw::create(
             [
-                'nama_rw' => 'RW 01',
-                'kepala_rw' => 'Pace',
-                'jumlah_penduduk' => '77',
+                'nama_rw' => '01',
+                'id_kelurahan' => 1,
                 'jumlah_kasus' => '10',
-                'google_map_embed_script' => 'https://goo.gl/maps/znMhYaz9uKhhLqRz5',
                 'latitude' => '-2.5014589',
                 'longitude' => '140.695693,13',
-                'status' => 'Publish',
-                'id_kelurahan' => 1,
+
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
 
@@ -36,15 +32,40 @@ class RwSeeder extends Seeder
 
         Rw::create(
             [
-                'nama_rw' => 'RW 02',
-                'kepala_rw' => 'Mace',
-                'jumlah_penduduk' => '95',
+                'nama_rw' => '02',
+                'id_kelurahan' => 1,
                 'jumlah_kasus' => '30',
-                'google_map_embed_script' => 'https://goo.gl/maps/znMhYaz9uKhhLqRz5',
                 'latitude' => '-2.5666345',
                 'longitude' => '140.7008717',
-                'status' => 'Publish',
-                'id_kelurahan' => 1,
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+        // Kelurahan B
+        Rw::create(
+            [
+                'nama_rw' => '01',
+                'id_kelurahan' => 2,
+                'jumlah_kasus' => '10',
+                'latitude' => '-2.5014589',
+                'longitude' => '140.695693,13',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '02',
+                'id_kelurahan' => 2,
+                'jumlah_kasus' => '30',
+                'latitude' => '-2.5666345',
+                'longitude' => '140.7008717',
+
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
 

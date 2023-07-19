@@ -28,6 +28,8 @@
                                         <i class="fa-solid fa-plus-square"></i> Tambah
                                     </a>
                                 </div>
+                                <!-- .card-header end -->
+                                
                                 <div class="card-body">
 
                                     <!-- .table-responsive start -->
@@ -50,10 +52,10 @@
                                                     <td>{{ $data->jumlah_penduduk ?? '' }}</td>
                                                     <td class="d-flex gap-1">
                                                         <div>
-                                                            <a href="{{ route('dasbor.distrik.detail', $data->id ) }}" class="btn btn-sm btn-dark">
+                                                            <a href="{{ route('dasbor.distrik.detail', $data->id ) }}" class="btn btn-sm btn-success">
                                                                 <i class="fa-solid fa-eye"></i>
                                                             </a>
-                                                            <a href="{{ route('dasbor.distrik.ubah', $data->id ) }}" class="btn btn-sm btn-dark">
+                                                            <a href="{{ route('dasbor.distrik.ubah', $data->id ) }}" class="btn btn-sm btn-outline-success">
                                                                 <i class="fa-solid fa-edit"></i>
                                                             </a>
                                                         </div>
@@ -74,9 +76,17 @@
                                     </div>
                                     <!-- .table-responsive end -->
                                 </div>
+                                <!-- .card-body end -->
+
+                                @if($datas->hasPages())
+                                
                                 <div class="card-footer">
                                     {{ $datas->links() }}
                                 </div>
+                                <!-- .card-footer end -->
+
+                                @endif
+
                             </div>
                         </div>
                     </div>

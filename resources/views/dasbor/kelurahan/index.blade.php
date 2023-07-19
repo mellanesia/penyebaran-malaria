@@ -24,54 +24,43 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="{{ url('dasbor/kelurahan/create') }}" class="btn btn-sm btn-dark">
+                                    <a href="{{ url('dasbor/kelurahan/tambah') }}" class="btn btn-sm btn-success">
                                         <i class="fa-solid fa-plus-square"></i> Tambah
                                     </a>
                                 </div>
+                                <!-- .card-header end -->
+                                
                                 <div class="card-body">
 
                                     <!-- .table-responsive start -->
                                     <div class="table-responsive">
 
-                                        <table class="table table-borderles">
+                                        <table class="table table-borderles table-hover table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th class="text-center" >#</th>
-                                                    <th class="text-center" >Nama Kelurahan</th>
-                                                    <th class="text-center" >Nama Distrik </th>
-                                                    <th class="text-center" >Kepada Kelurahan</th>
-                                                    <th class="text-center" >Jumlah Penduduk </th>
-                                                    <th class="text-center" >Latitude </th>
-                                                    <th class="text-center" >Longitude </th>
-                                                    <th class="text-center" >Status</th>
-                                                    <th class="text-center" >Aksi</th>
+                                                    <th class="text-center">#</th>
+                                                    <th>Nama Kelurahan</th>
+                                                    <th>Kepada Kelurahan</th>
+                                                    <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($datas as $data)
                                                 <tr>
-                                                    <td>{{ ++$i }}</td>
+                                                    <td class="text-center">{{ ++$i }}</td>
                                                     <td>{{ $data->nama_kelurahan ?? '' }}</td>
                                                     <td>{{ $data->distrik->nama_distrik ?? '' }}</td>
-                                                    <td>{{ $data->kepala_kelurahan ?? '' }}</td>
-                                                    <td>{{ $data->jumlah_penduduk }}</td>
-                                                    <td>{{ $data->latitude ?? '' }}</td>
-                                                    <td>{{ $data->longitude ?? '' }}</td>
-                                                    <td>{{ $data->status ?? '' }}</td>
                                                     <td class="d-flex gap-2">
-                                                        <a href="{{$data->google_map_embed_script ?? '#'}}"  target="_blank" class="btn btn-sm btn-dark">
-                                                          Lihat Embed  <i class="fa-solid fa-eye"></i>
-                                                        </a>
-                                                        <a href="{{ route('dasbor.kelurahan.show', $data->id ) }}" class="btn btn-sm btn-dark">
+                                                        <a href="{{ route('dasbor.kelurahan.detail', $data->id ) }}" class="btn btn-sm btn-outline-success">
                                                             <i class="fa-solid fa-eye"></i>
                                                         </a>
-                                                        <a href="{{ route('dasbor.kelurahan.edit', $data->id ) }}" class="btn btn-sm btn-dark">
+                                                        <a href="{{ route('dasbor.kelurahan.ubah', $data->id ) }}" class="btn btn-sm btn-outline-success">
                                                             <i class="fa-solid fa-edit"></i>
                                                         </a>
-                                                        <form action="{{ route('dasbor.kelurahan.destroy', $data->id ) }}" method="POST">
+                                                        <form action="{{ route('dasbor.kelurahan', $data->id ) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-outline-dark">
+                                                            <button type="submit" class="btn btn-sm btn-outline-dark show_confirm">
                                                                 <i class="fa-solid fa-trash"></i>
                                                             </button>
                                                         </form>
@@ -86,6 +75,16 @@
                                     <!-- .table-responsive end -->
 
                                 </div>
+                                <!-- .card-body end -->
+
+                                @if($datas->hasPages())
+                                
+                                <div class="card-footer">
+                                    {{ $datas->links() }}
+                                </div>
+                                <!-- .card-footer end -->
+
+                                @endif
                             </div>
                         </div>
                     </div>

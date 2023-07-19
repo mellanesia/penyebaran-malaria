@@ -12,8 +12,8 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3 class="text-capitalize">Tambah RW</h3>
-                                    {{-- <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error soluta illum asperiores at modi eos.</p> --}}
+                                    <h3>{{ Str::title(Request::segment(3)) }} {{ Str::title(Request::segment(2)) }}</h3>
+                                    <p class="text-muted">Menampilkan formulir untuk menambah data {{ Str::upper(Request::segment(2)) }}.</p>
                                 </div>
                             </div>
                         </div>
@@ -33,10 +33,11 @@
                                                 <!-- .table-responsive start -->
                                                 <div class="table-responsive">
 
+                                                    <!-- form group start -->
                                                     <div class="mb-3">
                                                         <label for="">Nama RW <span class="text-danger">*</span></label>
                                                         <input type="text" id="nama_rw" name="nama_rw" class="form-control" value="{{ old('nama_rw') ?? '' }}">
-
+    
                                                         @if ($errors->has('nama_rw'))
                                                             <span class="text-danger" role="alert">
                                                                 <small>{{ $errors->first('nama_rw') }}</small>
@@ -44,34 +45,9 @@
                                                         @endif
                                                         <!-- error message end -->
                                                     </div>
+                                                    <!-- form group end -->    
 
-                                                    <!-- .input item end -->
-                                                    <div class="mb-3">
-                                                        <label for="">Nama Kepala RW <span class="text-danger"></span></label>
-                                                        <input type="text" id="kepala_rw" name="kepala_rw" class="form-control" value="{{ old('kepala_rw') ?? '' }}">
-
-                                                        @if ($errors->has('kepala_rw'))
-                                                            <span class="text-danger" role="alert">
-                                                                <small>{{ $errors->first('kepala_rw') }}</small>
-                                                            </span>
-                                                        @endif
-                                                        <!-- error message end -->
-                                                    </div>
-                                                    <!-- .input item end -->
-
-                                                    <div class="mb-3">
-                                                        <label for="">Jumlah Penduduk</label>
-                                                        <input type="text" id="jumlah_penduduk" name="jumlah_penduduk" class="form-control" value="{{ old('jumlah_penduduk') ?? '' }}">
-
-                                                        @if ($errors->has('jumlah_penduduk'))
-                                                            <span class="text-danger" role="alert">
-                                                                <small>{{ $errors->first('jumlah_penduduk') }}</small>
-                                                            </span>
-                                                        @endif
-                                                        <!-- error message end -->
-                                                    </div>
-                                                    <!-- .input item end -->
-
+                                                    <!-- form group start -->
                                                     <div class="mb-3">
                                                         <label for="">Jumlah Kasus</label>
                                                         <input type="text" id="jumlah_kasus" name="jumlah_kasus" class="form-control" value="{{ old('jumlah_kasus') ?? '' }}">
@@ -85,17 +61,7 @@
                                                     </div>
                                                     <!-- .input item end -->
 
-                                                    <div class="mb-3">
-                                                      <label for="google_map_embed_script" class="form-label">Google Map Embed Ccript</label>
-                                                      <textarea class="form-control" name="google_map_embed_script" id="google_map_embed_script" rows="2">{{ old('google_map_embed_script') ?? '' }}</textarea>
-
-                                                      @if ($errors->has('google_map_embed_script'))
-                                                      <span class="text-danger" role="alert">
-                                                          <small>{{ $errors->first('google_map_embed_script') }}</small>
-                                                      </span>
-                                                      @endif
-                                                    </div>
-
+                                                    <!-- form group start -->
                                                     <div class="mb-3">
                                                         <label for="latitude">Latitude <span class="text-danger">*</span></label>
                                                         <input type="text" id="latitude" name="latitude" class="form-control" value="{{ old('latitude') ?? '' }}">
@@ -108,6 +74,7 @@
                                                         <!-- error message end -->
                                                     </div>
 
+                                                    <!-- form group start -->
                                                     <div class="mb-3">
                                                         <label for="longitude">Longitude <span class="text-danger">*</span></label>
                                                         <input type="text" id="longitude" name="longitude" class="form-control" value="{{ old('longitude') ?? '' }}">
@@ -120,7 +87,7 @@
                                                         <!-- error message end -->
                                                     </div>
 
-
+                                                    <!-- form group start -->
                                                     <div class="mb-3">
                                                         <label for="id_kelurahan " class="form-label d-block">Kelurahan</label>
                                                         <select class="form-control" name="id_kelurahan" id="exampleFormControlSelect1">
@@ -138,7 +105,7 @@
                                                     </div>
                                                     <!-- input item end -->
 
-
+                                                    <!-- form group start -->
                                                     <div class="mb-3">
                                                         <label for="status" class="form-label d-block">Status</label>
                                                         <select class="form-control" name="status" id="exampleFormControlSelect1">

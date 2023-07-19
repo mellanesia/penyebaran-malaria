@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
 
             $table->string('nama_kelurahan')->nullable();
-            $table->text('kepala_kelurahan')->nullable();
             $table->text('jumlah_penduduk')->nullable();
-            $table->text('google_map_embed_script')->nullable();
+
             $table->text('latitude')->nullable();
             $table->text('longitude')->nullable();
+
             $table->foreignId('id_distrik')->constrained('distriks')->cascadeOnDelete();
             $table->timestamps();
         });

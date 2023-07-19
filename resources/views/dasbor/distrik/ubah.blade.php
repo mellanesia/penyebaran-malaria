@@ -63,7 +63,7 @@
                                             class="btn btn-outline-dark">
                                             <i class="fa-solid fa-arrow-left"></i> ke Halaman {{ Str::title(Request::segment(2)) }}
                                         </a>
-                                        <button class="btn btn-dark">
+                                        <button class="btn btn-success">
                                             <i class="fa-solid fa-save"></i> Simpan
                                         </button>
                                     </div>

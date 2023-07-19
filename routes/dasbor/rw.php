@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
             // index
             Route::get('rw','index')
-                ->name('dasbor.rw');
+                ->name('dasbor.rw.index');
 
             // tambah
             Route::get('rw/tambah','create')
@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
             Route::post('rw','store')
                 ->name('dasbor.rw.store');
 
-            // detail
+            // show
             Route::get('rw/detail/{id}','show')
                 ->name('dasbor.rw.detail');
 

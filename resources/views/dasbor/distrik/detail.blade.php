@@ -54,14 +54,13 @@
                                 <!-- .card-body end -->
 
                                 <div class="card-footer">
-                                    <a href="{{ url(Request::segment(1) .'/'. Request::segment(2)) }}" 
-                                            class="btn btn-outline-dark">
-                                            <i class="fa-solid fa-arrow-left"></i> ke Halaman {{ Str::title(Request::segment(2)) }}
-                                        </a>
-                                        <a href="{{ url(Request::segment(1) .'/'. Request::segment(2).'/ubah', $data->id) }}" 
-                                            class="btn btn-dark">
-                                            <i class="fa-solid fa-edit"></i> Ubah
-                                        </a>
+                                    <a href="{{ url(Request::segment(1) .'/'. Request::segment(2)) }}" class="btn btn-outline-dark">
+                                        <i class="fa-solid fa-arrow-left"></i> ke Halaman {{ Str::title(Request::segment(2)) }}
+                                    </a>
+                                    <a href="{{ url(Request::segment(1) .'/'. Request::segment(2).'/ubah', $data->id) }}" 
+                                        class="btn btn-success">
+                                        <i class="fa-solid fa-edit"></i> Ubah
+                                    </a>
                                 </div>
                                 <!-- .card-footer end -->
                             </div>

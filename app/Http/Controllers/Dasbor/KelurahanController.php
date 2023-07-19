@@ -36,7 +36,7 @@ class KelurahanController extends Controller
      */
     public function create()
     {
-        $distrik = Distrik::where('status', 'Publish')->get();
+        $distrik = Distrik::get();
         return view('dasbor.kelurahan.tambah', compact('distrik'));
     }
 
@@ -51,20 +51,11 @@ class KelurahanController extends Controller
             $request->all(),
             [
                 'nama_kelurahan' => 'required',
-                // 'jumlah_penduduk' => 'required',
-                'google_map_embed_script' => 'required',
-                'latitude' => 'required',
-                'longitude' => 'required',
                 'id_distrik' => 'required',
             ],
             [
                 'nama_kelurahan.required' => 'Bagian ini wajib dilengkapi',
-                // 'jumlah_penduduk.required' => 'Bagian ini wajib dilengkapi',
-                'google_map_embed_script.required' => 'Bagian ini wajib dilengkapi',
-                'latitude.required' => 'Bagian ini wajib dilengkapi',
-                'longitude.required' => 'Bagian ini wajib dilengkapi',
-                // 'deskripsi.required' => 'Deskripsi Kategori tidak boleh kosong!',
-                // 'deskripsi.max' => 'Deskripsi Kategori maximal 255 karekter!',
+                'id_distrik.required' => 'Bagian ini wajib dilengkapi',
             ]
         );
 
@@ -76,11 +67,7 @@ class KelurahanController extends Controller
 
                 // buat variabel baru
                 $kelurahan->nama_kelurahan = $request->nama_kelurahan;
-                $kelurahan->jumlah_penduduk = $request->jumlah_penduduk;
-                $kelurahan->latitude = $request->latitude;
-                $kelurahan->longitude = $request->longitude;
                 $kelurahan->id_distrik = $request->id_distrik;
-                $kelurahan->google_map_embed_script = $request->google_map_embed_script;
 
                 // proses simpan
                 $kelurahan->save();
@@ -103,7 +90,7 @@ class KelurahanController extends Controller
     public function show($id)
     {
         $data = Kelurahan::where('id', $id)->first();
-        return view('dasbor.kelurahan.show', compact('data'));
+        return view('dasbor.kelurahan.detail', compact('data'));
     }
     
     /**
@@ -113,8 +100,8 @@ class KelurahanController extends Controller
     public function edit( $id)
     {
         $data = Kelurahan::where('id', $id)->first();
-        $distrik = Distrik::where('status', 'Publish')->get();
-        return view('dasbor.kelurahan.edit', compact('data','distrik'));
+        $distrik = Distrik::get();
+        return view('dasbor.kelurahan.ubah', compact('data','distrik'));
 
     }
 
@@ -128,31 +115,18 @@ class KelurahanController extends Controller
         $request->validate(
         [
             'nama_kelurahan' => 'required',
-            // 'jumlah_penduduk' => 'required',
-            'google_map_embed_script' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
             'id_distrik' => 'required',
         ],
         [
             'nama_kelurahan.required' => 'Bagian ini wajib dilengkapi',
-            // 'jumlah_penduduk.required' => 'Bagian ini wajib dilengkapi',
-            'google_map_embed_script.required' => 'Bagian ini wajib dilengkapi',
-            'latitude.required' => 'Bagian ini wajib dilengkapi',
-            'longitude.required' => 'Bagian ini wajib dilengkapi',
-            // 'deskripsi.required' => 'Deskripsi Kategori tidak boleh kosong!',
-            // 'deskripsi.max' => 'Deskripsi Kategori maximal 255 karekter!',
+            'id_distrik.required' => 'Bagian ini wajib dilengkapi',
         ]);
 
         $data = Kelurahan::find($id);
 
         // buat variabel baru
         $data->nama_kelurahan = $request->nama_kelurahan;
-        $data->jumlah_penduduk = $request->jumlah_penduduk;
-        $data->latitude = $request->latitude;
-        $data->longitude = $request->longitude;
         $data->id_distrik = $request->id_distrik;
-        $data->google_map_embed_script = $request->google_map_embed_script;
 
         // proses simpan
         $data->update();

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 
             // index
             Route::get('kelurahan','index')
-                ->name('dasbor.kelurahan');
+                ->name('dasbor.kelurahan.index');
 
             // tambah
             Route::get('kelurahan/tambah','create')
@@ -26,7 +26,7 @@ use Illuminate\Support\Facades\Route;
             Route::post('kelurahan','store')
                 ->name('dasbor.kelurahan.store');
 
-            // detail
+            // show
             Route::get('kelurahan/detail/{id}','show')
                 ->name('dasbor.kelurahan.detail');
 

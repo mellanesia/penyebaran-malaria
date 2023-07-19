@@ -12,8 +12,8 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3 class="text-capitalize">Ubah RW</h3>
-                                    {{-- <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error soluta illum asperiores at modi eos.</p> --}}
+                                    <h3>{{ Str::title(Request::segment(3)) }} {{ Str::title(Request::segment(2)) }}</h3>
+                                    <p class="text-muted">Menampilkan formulir untuk menambah data {{ Str::upper(Request::segment(2)) }}.</p>
                                 </div>
                             </div>
                         </div>
