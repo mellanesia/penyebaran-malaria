@@ -18,11 +18,7 @@ return new class extends Migration
 
             $table->string('nama_distrik')->nullable();
             $table->text('jumlah_penduduk')->nullable();
-
-            $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
-
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

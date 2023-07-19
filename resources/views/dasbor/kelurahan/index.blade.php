@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="py-5">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 @include('dasbor.partials.left-sidebar')
                 <!-- .col end -->
@@ -12,8 +12,8 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3>Kelurahan</h3>
-                                    <p class="text-muted">Data Kelurahan</p>
+                                    <h3>{{ Str::title(Request::segment(2)) }}</h3>
+                                    <p class="text-muted">Menampilkan semua data {{ Request::segment(2) }} yang telah ditambahkan.</p>
                                 </div>
                             </div>
                         </div>

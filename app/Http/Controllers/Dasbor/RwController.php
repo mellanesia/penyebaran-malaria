@@ -22,17 +22,12 @@ class RwController extends Controller
             ['nama_rw', '!=', Null],
             [function ($query) {
                 if (($s = request()->s)) {
-                    $query->orWhere('nama_rw', 'LIKE', '%' . $s . '%')
-                        // ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
-                        ->get();
+                    $query->orWhere('nama_rw', 'LIKE', '%' . $s . '%')->get();
                 }
             }]
         ])->orderBy('nama_rw', 'asc')->paginate(5);
-        $jumlahtrash = Rw::onlyTrashed()->count();
-        $jumlahdraft = Rw::where('status', 'Draft')->count();
-        $datapublish = Rw::where('status', 'Publish')->count();
 
-        return view('dasbor.rw.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('dasbor.rw.index', compact('datas'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**

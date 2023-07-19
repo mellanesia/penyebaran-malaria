@@ -12,9 +12,8 @@ use Illuminate\Support\Str;
 class KelurahanController extends Controller
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * INDEX
+     * menampilkan halaman utama 
      */
     public function index()
     {
@@ -23,23 +22,17 @@ class KelurahanController extends Controller
             ['nama_kelurahan', '!=', Null],
             [function ($query) {
                 if (($s = request()->s)) {
-                    $query->orWhere('nama_kelurahan', 'LIKE', '%' . $s . '%')
-                        // ->orWhere('middle_name', 'LIKE', '%' . $s . '%')
-                        ->get();
+                    $query->orWhere('nama_kelurahan', 'LIKE', '%' . $s . '%')->get();
                 }
             }]
         ])->orderBy('nama_kelurahan', 'asc')->paginate(5);
-        $jumlahtrash = Kelurahan::onlyTrashed()->count();
-        $jumlahdraft = Kelurahan::where('status', 'Draft')->count();
-        $datapublish = Kelurahan::where('status', 'Publish')->count();
 
-        return view('dasbor.kelurahan.index', compact('datas', 'jumlahtrash', 'jumlahdraft', 'datapublish'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('dasbor.kelurahan.index', compact('datas'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
+     * CREATE
+     * menampilkan halaman create / tambah 
      */
     public function create()
     {
@@ -48,10 +41,8 @@ class KelurahanController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * STORE
+     * menjalankan fungsi store atau menambah data ke database
      */
     public function store(Request $request)
     {
@@ -59,22 +50,19 @@ class KelurahanController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'nama_kelurahan'      => 'required',
-                'kepala_kelurahan'      => 'required',
-                'jumlah_penduduk'      => 'required',
-                'google_map_embed_script'      => 'required',
-                'latitude'      => 'required',
-                'longitude'      => 'required',
-                'id_distrik'      => 'required',
-                'status'      => 'required',
+                'nama_kelurahan' => 'required',
+                // 'jumlah_penduduk' => 'required',
+                'google_map_embed_script' => 'required',
+                'latitude' => 'required',
+                'longitude' => 'required',
+                'id_distrik' => 'required',
             ],
             [
-                'nama_kelurahan.required' => 'Nama Kelurahan tidak boleh kosong!',
-                'kepala_kelurahan.required' => 'Nama Kepala Kelurahan tidak boleh kosong!',
-                'jumlah_penduduk.required' => 'Jumlah Penduduk tidak boleh kosong!',
-                'google_map_embed_script.required' => 'Google Map Embed Scipt tidak boleh kosong!',
-                'latitude.required' => 'Latitude tidak boleh kosong!',
-                'longitude.required' => 'Longitude Kelurahan tidak boleh kosong!',
+                'nama_kelurahan.required' => 'Bagian ini wajib dilengkapi',
+                // 'jumlah_penduduk.required' => 'Bagian ini wajib dilengkapi',
+                'google_map_embed_script.required' => 'Bagian ini wajib dilengkapi',
+                'latitude.required' => 'Bagian ini wajib dilengkapi',
+                'longitude.required' => 'Bagian ini wajib dilengkapi',
                 // 'deskripsi.required' => 'Deskripsi Kategori tidak boleh kosong!',
                 // 'deskripsi.max' => 'Deskripsi Kategori maximal 255 karekter!',
             ]
@@ -85,16 +73,20 @@ class KelurahanController extends Controller
         } else {
             try {
                 $kelurahan = new Kelurahan();
-                $kelurahan->nama_kelurahan    = $request->nama_kelurahan;
-                $kelurahan->kepala_kelurahan  = $request->kepala_kelurahan;
-                $kelurahan->jumlah_penduduk   = $request->jumlah_penduduk;
-                $kelurahan->latitude          = $request->latitude;
-                $kelurahan->longitude         = $request->longitude;
-                $kelurahan->id_distrik        = $request->id_distrik;
-                $kelurahan->google_map_embed_script        = $request->google_map_embed_script;
-                $kelurahan->status            = $request->status;
+
+                // buat variabel baru
+                $kelurahan->nama_kelurahan = $request->nama_kelurahan;
+                $kelurahan->jumlah_penduduk = $request->jumlah_penduduk;
+                $kelurahan->latitude = $request->latitude;
+                $kelurahan->longitude = $request->longitude;
+                $kelurahan->id_distrik = $request->id_distrik;
+                $kelurahan->google_map_embed_script = $request->google_map_embed_script;
+
+                // proses simpan
                 $kelurahan->save();
-                Alert::toast('Data Berhasil dibuat!', 'success');
+
+                // menampilkan notifikasi alert
+                alert()->success('Berhasil', 'Data telah berhasil ditambahkan ke database')->autoclose(1100);
                 return redirect('dasbor/kelurahan');
 
             } catch (\Throwable $th) {
@@ -105,21 +97,18 @@ class KelurahanController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Kelurahan  $kelurahan
-     * @return \Illuminate\Http\Response
+     * SHOW
+     * menampilkan halaman show atau data secara detail 
      */
     public function show($id)
     {
         $data = Kelurahan::where('id', $id)->first();
         return view('dasbor.kelurahan.show', compact('data'));
     }
+    
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Kelurahan  $kelurahan
-     * @return \Illuminate\Http\Response
+     * EDIT
+     * menampilkan halaman edit 
      */
     public function edit( $id)
     {
@@ -130,73 +119,61 @@ class KelurahanController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Kelurahan  $kelurahan
-     * @return \Illuminate\Http\Response
+     * UPDATE
+     * menjalankan fungsi update atau mengubah data dari database
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
-        $validator = Validator::make(
-            $request->all(),
-            [
-                'nama_kelurahan'      => 'required',
-                'kepala_kelurahan'      => 'required',
-                'jumlah_penduduk'      => 'required',
-                'google_map_embed_script'      => 'required',
-                'latitude'      => 'required',
-                'longitude'      => 'required',
-                'id_distrik'      => 'required',
-                'status'      => 'required',
-            ],
-            [
-                'nama_kelurahan.required' => 'Nama Kelurahan tidak boleh kosong!',
-                'kepala_kelurahan.required' => 'Nama Kepala Kelurahan tidak boleh kosong!',
-                'jumlah_penduduk.required' => 'Jumlah Penduduk tidak boleh kosong!',
-                'google_map_embed_script.required' => 'Google Map Embed Scipt tidak boleh kosong!',
-                'latitude.required' => 'Latitude tidak boleh kosong!',
-                'longitude.required' => 'Longitude Kelurahan tidak boleh kosong!',
-                // 'deskripsi.required' => 'Deskripsi Kategori tidak boleh kosong!',
-                // 'deskripsi.max' => 'Deskripsi Kategori maximal 255 karekter!',
-            ]
-        );
+        // membuat validasi
+        $request->validate(
+        [
+            'nama_kelurahan' => 'required',
+            // 'jumlah_penduduk' => 'required',
+            'google_map_embed_script' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'id_distrik' => 'required',
+        ],
+        [
+            'nama_kelurahan.required' => 'Bagian ini wajib dilengkapi',
+            // 'jumlah_penduduk.required' => 'Bagian ini wajib dilengkapi',
+            'google_map_embed_script.required' => 'Bagian ini wajib dilengkapi',
+            'latitude.required' => 'Bagian ini wajib dilengkapi',
+            'longitude.required' => 'Bagian ini wajib dilengkapi',
+            // 'deskripsi.required' => 'Deskripsi Kategori tidak boleh kosong!',
+            // 'deskripsi.max' => 'Deskripsi Kategori maximal 255 karekter!',
+        ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withInput($request->all())->withErrors($validator);
-        } else {
-            try {
-                $kelurahan = Kelurahan::find($id);
-                $kelurahan->nama_kelurahan    = $request->nama_kelurahan;
-                $kelurahan->kepala_kelurahan  = $request->kepala_kelurahan;
-                $kelurahan->jumlah_penduduk   = $request->jumlah_penduduk;
-                $kelurahan->latitude          = $request->latitude;
-                $kelurahan->longitude         = $request->longitude;
-                $kelurahan->id_distrik        = $request->id_distrik;
-                $kelurahan->google_map_embed_script        = $request->google_map_embed_script;
-                $kelurahan->status            = $request->status;
-                $kelurahan->update();
-                Alert::toast('Data Berhasil diubah!', 'success');
-                return redirect('dasbor/kelurahan');
+        $data = Kelurahan::find($id);
 
-            } catch (\Throwable $th) {
-                Alert::toast('Gagal', 'error');
-                return redirect()->back();
-            }
-        }
+        // buat variabel baru
+        $data->nama_kelurahan = $request->nama_kelurahan;
+        $data->jumlah_penduduk = $request->jumlah_penduduk;
+        $data->latitude = $request->latitude;
+        $data->longitude = $request->longitude;
+        $data->id_distrik = $request->id_distrik;
+        $data->google_map_embed_script = $request->google_map_embed_script;
+
+        // proses simpan
+        $data->update();
+
+        // menampilkan notifikasi alert
+        alert()->success('Berubah!', 'Data telah berhasil diubah')->autoclose(1100);
+
+        // mengalihkan halaman
+        return redirect('dasbor/kelurahan/detail/' . $request->id);
+
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Kelurahan  $kelurahan
-     * @return \Illuminate\Http\Response
+     * DESTROY
+     * menjalankan fungsi destroy atau menghapus data dari database
      */
     public function destroy($id)
     {
         $data = Kelurahan::find($id);
         $data->delete();
-        alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
-        return redirect()->route('dasbor.kelurahan.index');
+        alert()->success('Terhapus!', 'Data telah terhapus secara permanen!')->autoclose(1100);
+        return redirect()->back();
     }
 }

@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="py-5">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 @include('dasbor.partials.left-sidebar')
                 <!-- .col end -->
@@ -12,8 +12,8 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3 class="text-capitalize">Detail {{ Request::segment(2) }}</h3>
-                                    {{-- <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error soluta illum asperiores at modi eos.</p> --}}
+                                    <h3>{{ Str::title(Request::segment(3)) }} {{ Str::title(Request::segment(2)) }}</h3>
+                                    <p class="text-muted">Menampilkan data {{ Request::segment(2) }} secara detail</p>
                                 </div>
                             </div>
                         </div>
@@ -22,8 +22,6 @@
 
                     <div class="row mb-3">
                         <div class="col">
-
-
 
                                 <div class="card">
                                     <div class="card-body">
@@ -36,7 +34,6 @@
                                                     <div class="mb-3">
                                                         <label for="">Nama Kelurahan <span class="text-danger"></span></label>
                                                         <input type="text" id="nama_kelurahan"  readonly  value="{{$data->nama_kelurahan}}"  class="form-control bg-light" value="{{ old('nama_kelurahan') ?? '' }}">
-
                                                         <!-- error message end -->
                                                     </div>
 

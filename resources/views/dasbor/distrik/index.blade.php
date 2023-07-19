@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="py-5">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 @include('dasbor.partials.left-sidebar')
                 <!-- .col end -->
@@ -12,8 +12,8 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-body">
-                                    <h3>Distrik</h3>
-                                    <p class="text-muted">Data Distrik</p>
+                                    <h3>{{ Str::title(Request::segment(2)) }}</h3>
+                                    <p class="text-muted">Menampilkan semua data {{ Request::segment(2) }} yang telah ditambahkan.</p>
                                 </div>
                             </div>
                         </div>
@@ -24,7 +24,7 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="{{ url('dasbor/distrik/create') }}" class="btn btn-sm btn-dark">
+                                    <a href="{{ url(Request::segment(1).'/'.Request::segment(2).'/tambah') }}" class="btn btn-sm btn-success">
                                         <i class="fa-solid fa-plus-square"></i> Tambah
                                     </a>
                                 </div>
@@ -33,31 +33,31 @@
                                     <!-- .table-responsive start -->
                                     <div class="table-responsive">
 
-                                        <table class="table table-borderles">
+                                        <table class="table table-borderles table-hover table-striped">
                                             <thead>
                                                 <tr>
-                                                    <th>#</th>
+                                                    <th class="text-center">#</th>
                                                     <th>Nama Distrik</th>
-                                                    <th>Status</th>
-                                                    <th></th>
+                                                    <th>Jumlah Penduduk</th>
                                                     <th></th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                                 @foreach ($datas as $data)
                                                 <tr>
-                                                    <td>{{ ++$i }}</td>
+                                                    <td class="text-center">{{ ++$i }}</td>
                                                     <td>{{ $data->nama_distrik ?? '' }}</td>
                                                     <td>{{ $data->jumlah_penduduk ?? '' }}</td>
-                                                    <td>{{ $data->status ?? '' }}</td>
-                                                    <td class="d-flex gap-2">
-                                                        <a href="{{ route('dasbor.distrik.show', $data->id ) }}" class="btn btn-sm btn-dark">
-                                                            <i class="fa-solid fa-eye"></i>
-                                                        </a>
-                                                        <a href="{{ route('dasbor.distrik.edit', $data->id ) }}" class="btn btn-sm btn-dark">
-                                                            <i class="fa-solid fa-edit"></i>
-                                                        </a>
-                                                        <form action="{{ route('dasbor.distrik.destroy', $data->id ) }}" method="POST">
+                                                    <td class="d-flex gap-1">
+                                                        <div>
+                                                            <a href="{{ route('dasbor.distrik.detail', $data->id ) }}" class="btn btn-sm btn-dark">
+                                                                <i class="fa-solid fa-eye"></i>
+                                                            </a>
+                                                            <a href="{{ route('dasbor.distrik.ubah', $data->id ) }}" class="btn btn-sm btn-dark">
+                                                                <i class="fa-solid fa-edit"></i>
+                                                            </a>
+                                                        </div>
+                                                        <form action="{{ route('dasbor.distrik', $data->id ) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
                                                             <button type="submit" class="btn btn-sm btn-outline-dark show_confirm">
@@ -73,7 +73,9 @@
 
                                     </div>
                                     <!-- .table-responsive end -->
-
+                                </div>
+                                <div class="card-footer">
+                                    {{ $datas->links() }}
                                 </div>
                             </div>
                         </div>

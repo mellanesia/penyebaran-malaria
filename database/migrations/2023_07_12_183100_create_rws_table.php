@@ -26,7 +26,6 @@ return new class extends Migration
             $table->enum('status',['Publish','Draft'])->default('Publish')->nullable();
             $table->foreignId('id_kelurahan')->constrained('kelurahans')->cascadeOnDelete();
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

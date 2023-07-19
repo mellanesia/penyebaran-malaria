@@ -8,18 +8,6 @@ use Illuminate\Support\Facades\Route;
 /*
     |--------------------------------------------------------------------------
     | distrik
-    |
-    | index
-    | draft
-    | tambah
-    | store
-    | show
-    | edit
-    | update
-    | destroy
-    | trash
-    | restore
-    | delete
     |--------------------------------------------------------------------------
     */
     Route::group(['middleware' => ['role:administrator']], function () { 
@@ -30,32 +18,28 @@ use Illuminate\Support\Facades\Route;
             Route::get('distrik','index')
                 ->name('dasbor.distrik');
 
-            // draft
-            Route::get('distrik/draft','draft')
-                ->name('dasbor.distrik.draft');
+            // tambah
+            Route::get('distrik/tambah','create')
+                ->name('dasbor.distrik.tambah');
 
-            // create
-            Route::get('distrik/create','create')
-                ->name('dasbor.distrik.create');
-
-            // store
+            // store / proses tambah
             Route::post('distrik','store')
                 ->name('dasbor.distrik.store');
 
-            // show
-            Route::get('distrik/show/{id}','show')
-                ->name('dasbor.distrik.show');
+            // detail
+            Route::get('distrik/detail/{id}','show')
+                ->name('dasbor.distrik.detail');
 
-            // edit
-            Route::get('distrik/edit/{id}','edit')
-                ->name('dasbor.distrik.edit');
+            // ubah
+            Route::get('distrik/ubah/{id}','edit')
+                ->name('dasbor.distrik.ubah');
 
-            // update
+            // update / proses ubah
             Route::put('distrik/update/{id}','update')
                 ->name('dasbor.distrik.update');
 
-            // destroy
+            // destroy / proses hapus
             Route::delete('distrik/{id}','destroy')
-                ->name('dasbor.distrik.destroy');
+                ->name('dasbor.distrik');
         });
     });
