@@ -32,7 +32,7 @@ class Kelurahan extends Model
         return $this->belongsTo(Distrik::class, 'id_distrik');
     }
 
-    public function rw(): BelongsTo
+    public function rw(): HasMany
     {
         return $this->hasMany(Rw::class, 'id_kelurahan');
     }
