@@ -77,6 +77,8 @@
                                         </div>
 
                                     </div>
+                                    <!-- .dard-body end -->
+
                                     <div class="card-footer">
                                         <a href="{{ url(Request::segment(1) .'/'. Request::segment(2)) }}" 
                                             class="btn btn-outline-dark">
@@ -86,6 +88,8 @@
                                             <i class="fa-solid fa-save"></i> Simpan
                                         </button>
                                     </div>
+                                    <!-- .dard-footer end -->
+                                    
                                 </div>
 
                             </form>

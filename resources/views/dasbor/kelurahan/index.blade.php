@@ -50,20 +50,22 @@
                                                     <td class="text-center">{{ ++$i }}</td>
                                                     <td>{{ $data->nama_kelurahan ?? '' }}</td>
                                                     <td>{{ $data->distrik->nama_distrik ?? '' }}</td>
-                                                    <td class="d-flex gap-2">
-                                                        <a href="{{ route('dasbor.kelurahan.detail', $data->id ) }}" class="btn btn-sm btn-outline-success">
-                                                            <i class="fa-solid fa-eye"></i>
-                                                        </a>
-                                                        <a href="{{ route('dasbor.kelurahan.ubah', $data->id ) }}" class="btn btn-sm btn-outline-success">
-                                                            <i class="fa-solid fa-edit"></i>
-                                                        </a>
-                                                        <form action="{{ route('dasbor.kelurahan', $data->id ) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-outline-dark show_confirm">
-                                                                <i class="fa-solid fa-trash"></i>
-                                                            </button>
-                                                        </form>
+                                                    <td>
+                                                        <div class="d-flex gap-1">
+                                                            <a href="{{ route('dasbor.kelurahan.detail', $data->id ) }}" class="btn btn-sm btn-success">
+                                                                <i class="fa-solid fa-eye"></i>
+                                                            </a>
+                                                            <a href="{{ route('dasbor.kelurahan.ubah', $data->id ) }}" class="btn btn-sm btn-outline-success">
+                                                                <i class="fa-solid fa-edit"></i>
+                                                            </a>
+                                                            <form action="{{ route('dasbor.kelurahan', $data->id ) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-sm btn-outline-dark show_confirm">
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </td>
                                                 </tr>
 

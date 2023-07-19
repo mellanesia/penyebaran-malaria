@@ -24,7 +24,7 @@
                         <div class="col">
                             <div class="card">
                                 <div class="card-header">
-                                    <a href="{{ route('dasbor.rw.tambah') }}" class="btn btn-sm btn-dark">
+                                    <a href="{{ route('dasbor.rw.tambah') }}" class="btn btn-sm btn-success">
                                         <i class="fa-solid fa-plus-square"></i> Tambah
                                     </a>
                                 </div>
@@ -39,7 +39,7 @@
                                             <thead>
                                                 <tr>
                                                     <th class="text-center">#</th>
-                                                    <th>RW</th>
+                                                    <th>RW <small>| Kelurahan</small> </th>
                                                     <th>Jumlah Kasus </th>
                                                     <th>Latitude </th>
                                                     <th>Longitude </th>
@@ -50,24 +50,29 @@
                                                 @foreach ($datas as $data)
                                                 <tr>
                                                     <td class="text-center">{{ ++$i }}</td>
-                                                    <td>{{ $data->nama_rw ?? '' }}</td>
-                                                    <td>{{ $data->jumlah_kasus }}</td>
+                                                    <td>
+                                                        <b>RW {{ $data->nama_rw ?? '' }} </b>
+                                                        <small class="d-block text-muted"> {{ $data->kelurahan->nama_kelurahan ?? '' }} </small>
+                                                    </td>
+                                                    <td><b>{{ $data->jumlah_kasus ?? ''}}</b> Kasus</td>
                                                     <td>{{ $data->latitude ?? '' }}</td>
                                                     <td>{{ $data->longitude ?? '' }}</td>
-                                                    <td class="d-flex gap-2">
-                                                        <a href="{{ route('dasbor.rw.detail', $data->id ) }}" class="btn btn-sm btn-dark">
-                                                            <i class="fa-solid fa-eye"></i>
-                                                        </a>
-                                                        <a href="{{ route('dasbor.rw.ubah', $data->id ) }}" class="btn btn-sm btn-dark">
-                                                            <i class="fa-solid fa-edit"></i>
-                                                        </a>
-                                                        <form action="{{ route('dasbor.rw', $data->id ) }}" method="POST">
-                                                            @csrf
-                                                            @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-outline-dark">
-                                                                <i class="fa-solid fa-trash"></i>
-                                                            </button>
-                                                        </form>
+                                                    <td>
+                                                        <div class="d-flex gap-1">
+                                                            <a href="{{ route('dasbor.rw.detail', $data->id ) }}" class="btn btn-sm btn-success">
+                                                                <i class="fa-solid fa-eye"></i>
+                                                            </a>
+                                                            <a href="{{ route('dasbor.rw.ubah', $data->id ) }}" class="btn btn-sm btn-outline-success">
+                                                                <i class="fa-solid fa-edit"></i>
+                                                            </a>
+                                                            <form action="{{ route('dasbor.rw', $data->id ) }}" method="POST">
+                                                                @csrf
+                                                                @method('DELETE')
+                                                                <button type="submit" class="btn btn-sm btn-outline-dark show_confirm">
+                                                                    <i class="fa-solid fa-trash"></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
                                                     </td>
                                                 </tr>
                                                 @endforeach

@@ -42,24 +42,6 @@
                                         
                                                 <!-- item group start -->
                                                 <div class="mb-3 border-bottom pb-2">
-                                                    <label class="d-block fw-bold">Kepala RW</label>
-                                                    <div>
-                                                        {{ $data->kepala_rw ?? '' }}
-                                                    </div>
-                                                </div>
-                                                <!-- item group end -->
-                                        
-                                                <!-- item group start -->
-                                                <div class="mb-3 border-bottom pb-2">
-                                                    <label class="d-block fw-bold">Jumlah Penduduk</label>
-                                                    <div>
-                                                        {{ $data->jumlah_penduduk ?? '' }}
-                                                    </div>
-                                                </div>
-                                                <!-- item group end -->
-                                        
-                                                <!-- item group start -->
-                                                <div class="mb-3 border-bottom pb-2">
                                                     <label class="d-block fw-bold">Jumlah Kasus</label>
                                                     <div>
                                                         {{ $data->jumlah_kasus ?? '' }}

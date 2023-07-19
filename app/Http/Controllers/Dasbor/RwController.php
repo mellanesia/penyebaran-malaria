@@ -37,7 +37,7 @@ class RwController extends Controller
      */
     public function create()
     {
-        $kelurahan = Kelurahan::where('status', 'Publish')->get();
+        $kelurahan = Kelurahan::get();
         return view('dasbor.rw.tambah',compact('kelurahan'));
     }
 
@@ -51,23 +51,23 @@ class RwController extends Controller
     {
         // membuat validasi
         $request->validate(
-        [
-            'nama_rw' => 'required',
-            'kepala_rw' => 'required',
-            'jumlah_penduduk' => 'required',
-            'jumlah_kasus' => 'required',
-            'latitude' => 'required',
-            'longitude' => 'required',
-            'id_kelurahan' => 'required',
-        ],
-        [
-            'nama_rw.required' => 'Bagian ini wajib dilengkapi',
-            'kepala_rw.required' => 'Bagian ini wajib dilengkapi',
-            'jumlah_penduduk.required' => 'Bagian ini wajib dilengkapi',
-            'latitude.required' => 'Bagian ini wajib dilengkapi',
-            'longitude.required' => 'Bagian ini wajib dilengkapi',
-            'jumlah_kasus.required' => 'Bagian ini wajib dilengkapi',
-        ]);
+            [
+                'nama_rw' => 'required|numeric',
+                'jumlah_kasus' => 'required|numeric',
+                'latitude' => 'required',
+                'longitude' => 'required',
+                'id_kelurahan' => 'required',
+            ],
+            [
+                'nama_rw.required' => 'Bagian ini wajib dilengkapi',
+                'nama_rw.numeric' => 'Harus berupa angka',
+                'jumlah_kasus.required' => 'Bagian ini wajib dilengkapi',
+                'jumlah_kasus.numeric' => 'Harus berupa angka',
+                'latitude.required' => 'Bagian ini wajib dilengkapi',
+                'longitude.required' => 'Bagian ini wajib dilengkapi',
+                'id_kelurahan.required' => 'Bagian ini wajib dilengkapi',
+            ]
+        );
 
         $data = new Rw();
 
@@ -75,11 +75,9 @@ class RwController extends Controller
         $data->id_kelurahan = $request->id_kelurahan;
 
         $data->nama_rw = $request->nama_rw;
-        $data->kepala_rw  = $request->kepala_rw;
-        $data->jumlah_penduduk = $request->jumlah_penduduk;
+        $data->jumlah_kasus = $request->jumlah_kasus;
         $data->latitude = $request->latitude;
         $data->longitude = $request->longitude;
-        $data->jumlah_kasus = $request->jumlah_kasus;
 
         // proses simpan
         $data->save();
@@ -101,7 +99,7 @@ class RwController extends Controller
      */
     public function show($id)
     {
-        $data = RW::where('id', $id)->first();
+        $data = Rw::where('id', $id)->first();
         return view('dasbor.rw.detail', compact('data'));
     }
 
@@ -113,8 +111,8 @@ class RwController extends Controller
      */
     public function edit($id)
     {
-        $data = RW::where('id', $id)->first();
-        $kelurahan = Kelurahan::where('status', 'Publish')->get();
+        $data = Rw::where('id', $id)->first();
+        $kelurahan = Kelurahan::get();
         return view('dasbor.rw.ubah',compact('data','kelurahan'));
     }
 
@@ -125,26 +123,25 @@ class RwController extends Controller
      * @param  \App\Models\Rw  $rw
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $rw)
+    public function update(Request $request, $id)
     {
         $validator = Validator::make(
             $request->all(),
             [
-                'nama_rw' => 'required',
-                'kepala_rw' => 'required',
-                'jumlah_penduduk' => 'required',
-                'jumlah_kasus' => 'required',
+                'nama_rw' => 'required|numeric',
+                'jumlah_kasus' => 'required|numeric',
                 'latitude' => 'required',
                 'longitude' => 'required',
                 'id_kelurahan' => 'required',
             ],
             [
                 'nama_rw.required' => 'Bagian ini wajib dilengkapi',
-                'kepala_rw.required' => 'Bagian ini wajib dilengkapi',
-                'jumlah_penduduk.required' => 'Bagian ini wajib dilengkapi',
+                'nama_rw.numeric' => 'Harus berupa angka',
+                'jumlah_kasus.required' => 'Bagian ini wajib dilengkapi',
+                'jumlah_kasus.numeric' => 'Harus berupa angka',
                 'latitude.required' => 'Bagian ini wajib dilengkapi',
                 'longitude.required' => 'Bagian ini wajib dilengkapi',
-                'jumlah_kasus.required' => 'Bagian ini wajib dilengkapi',
+                'id_kelurahan.required' => 'Bagian ini wajib dilengkapi',
             ]
         );
 
@@ -152,21 +149,22 @@ class RwController extends Controller
             return redirect()->back()->withInput($request->all())->withErrors($validator);
         } else {
             try {
-                $rw = Rw::find($rw);
+                $rw = Rw::find($id);
 
                 $rw->id_kelurahan = $request->id_kelurahan;
                 
                 $rw->nama_rw = $request->nama_rw;
-                $rw->kepala_rw  = $request->kepala_rw;
-                $rw->jumlah_penduduk = $request->jumlah_penduduk;
+                $rw->jumlah_kasus = $request->jumlah_kasus;
                 $rw->latitude = $request->latitude;
                 $rw->longitude = $request->longitude;
-                $rw->google_map_embed_script = $request->google_map_embed_script;
-                $rw->jumlah_kasus = $request->jumlah_kasus;
 
                 $rw->update();
-                Alert::toast('Data Berhasil dibuat!', 'success');
-                return redirect('dasbor/rw');
+
+                // menampilkan notifikasi alert
+                alert()->success('Berubah!', 'Data telah berhasil diubah')->autoclose(1100);
+        
+                // mengalihkan halaman
+                return redirect('dasbor/rw/detail/' . $request->id);
 
             } catch (\Throwable $th) {
                 Alert::toast('Gagal', 'error');
@@ -181,9 +179,9 @@ class RwController extends Controller
      * @param  \App\Models\Rw  $rw
      * @return \Illuminate\Http\Response
      */
-    public function destroy($rw)
+    public function destroy($id)
     {
-        $data = RW::find($rw);
+        $data = Rw::find($id);
         $data->delete();
         alert()->success('Berhasil', 'Sukses!!')->autoclose(1100);
         return redirect()->route('dasbor.rw.index');
