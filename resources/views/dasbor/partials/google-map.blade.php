@@ -8,7 +8,7 @@
 
     <style>
         .marker-position {
-            bottom: 50px;
+            bottom: 30px;
             left: 0;
             position: relative;
         }
@@ -24,7 +24,7 @@
 
             // Map Options
             var mapOptions = {
-                zoom: 12,
+                zoom: 11,
                 center: myLatlng,
                 mapTypeId: "satellite",
             };
@@ -67,9 +67,9 @@
                     var marker = new google.maps.Marker({
                         map: map,
                         label: {
-                            text: 'RW ' + item.nama_rw,
+                            text: 'Kelurahan ' + item.kelurahan.nama_kelurahan + ' RW ' + item.nama_rw,
                             color: 'white',
-                            fontSize: '25px',
+                            fontSize: '14px',
                             className: 'marker-position',
                         },
                         position: point,

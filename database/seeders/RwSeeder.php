@@ -19,10 +19,10 @@ class RwSeeder extends Seeder
         Rw::create(
             [
                 'nama_rw' => '01',
-                'id_kelurahan' => 1,
+                'id_kelurahan' => 1, // Angkasapura
                 'jumlah_kasus' => '10',
-                'latitude' => '-2.5014589',
-                'longitude' => '140.695693,13',
+                'latitude' => '-2.490725', // -2.490725, 140.654776
+                'longitude' => '140.654776',
 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -33,10 +33,10 @@ class RwSeeder extends Seeder
         Rw::create(
             [
                 'nama_rw' => '02',
-                'id_kelurahan' => 1,
+                'id_kelurahan' => 1, // Angkasapura
                 'jumlah_kasus' => '30',
-                'latitude' => '-2.5666345',
-                'longitude' => '140.7008717',
+                'latitude' => '-2.506073', // -2.506073, 140.695547
+                'longitude' => '140.695547',
 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -48,10 +48,10 @@ class RwSeeder extends Seeder
         Rw::create(
             [
                 'nama_rw' => '01',
-                'id_kelurahan' => 2,
+                'id_kelurahan' => 2, // Bayangkara
                 'jumlah_kasus' => '10',
-                'latitude' => '-2.5014589',
-                'longitude' => '140.695693,13',
+                'latitude' => '',
+                'longitude' => '',
 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -62,10 +62,10 @@ class RwSeeder extends Seeder
         Rw::create(
             [
                 'nama_rw' => '02',
-                'id_kelurahan' => 2,
+                'id_kelurahan' => 2, // Bayangkara
                 'jumlah_kasus' => '30',
-                'latitude' => '-2.5666345',
-                'longitude' => '140.7008717',
+                'latitude' => '',
+                'longitude' => '',
 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -77,10 +77,10 @@ class RwSeeder extends Seeder
         Rw::create(
             [
                 'nama_rw' => '01',
-                'id_kelurahan' => 3,
+                'id_kelurahan' => 3, // Gurabesi
                 'jumlah_kasus' => '10',
-                'latitude' => '-2.5014589',
-                'longitude' => '140.695693,13',
+                'latitude' => '',
+                'longitude' => '',
 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -91,10 +91,10 @@ class RwSeeder extends Seeder
         Rw::create(
             [
                 'nama_rw' => '02',
-                'id_kelurahan' => 3,
+                'id_kelurahan' => 3, // Gurabesi
                 'jumlah_kasus' => '30',
-                'latitude' => '-2.5666345',
-                'longitude' => '140.7008717',
+                'latitude' => '',
+                'longitude' => '',
 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
@@ -105,10 +105,10 @@ class RwSeeder extends Seeder
         Rw::create(
             [
                 'nama_rw' => '03',
-                'id_kelurahan' => 3,
+                'id_kelurahan' => 3, // Gurabesi
                 'jumlah_kasus' => '30',
-                'latitude' => '-2.5666345',
-                'longitude' => '140.7008717',
+                'latitude' => '',
+                'longitude' => '',
 
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()

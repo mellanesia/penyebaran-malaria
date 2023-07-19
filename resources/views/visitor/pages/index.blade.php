@@ -13,28 +13,28 @@
                             <i class="fa-solid fa-table"></i>
                         </div>
                         <h2 class="h5">Data per Kelurahan</h2>
-                        <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                        <p class="mb-0">Menampilkan data kelurahan yang ada dibawah distrik.</p>
                     </div>
                     <div class="col mb-5 h-100">
                         <div class="feature bg-success bg-gradient text-white rounded-3 mb-3">
                             <i class="fa-solid fa-table"></i>
                         </div>
                         <h2 class="h5">Data per RW</h2>
-                        <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                        <p class="mb-0">Menampilkan data RW yang ada dibawah setiap kelurahan.</p>
                     </div>
                     <div class="col mb-5 mb-md-0 h-100">
                         <div class="feature bg-success bg-gradient text-white rounded-3 mb-3">
                             <i class="fa-solid fa-map-marker"></i>
                         </div>
                         <h2 class="h5">Titik Kordinat</h2>
-                        <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                        <p class="mb-0">Menampilkan titik kordinat penyebaran endemik malaria di setiap berdasarkan RW.</p>
                     </div>
                     <div class="col h-100">
                         <div class="feature bg-success bg-gradient text-white rounded-3 mb-3">
                             <i class="fa-solid fa-chart-bar"></i>
                         </div>
                         <h2 class="h5">Data Melalui Grafik</h2>
-                        <p class="mb-0">Paragraph of text beneath the heading to explain the heading. Here is just a bit more text.</p>
+                        <p class="mb-0">Akan dikembangkan kemudian penyanyian data berdasarkan grafik.</p>
                     </div>
                 </div>
             </div>

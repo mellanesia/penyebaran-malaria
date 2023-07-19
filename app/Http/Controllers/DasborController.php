@@ -27,8 +27,9 @@ class DasborController extends Controller
 
     public function json()
     {
-        $datapublish = Rw::get();
+        $datapublish = Rw::with('kelurahan')->get();
         $data_maps = json_encode($datapublish);
         echo $data_maps;
-    }
+    }    
+
 }

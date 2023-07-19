@@ -20,7 +20,7 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     </head>
-    <body class="d-flex flex-column">
+    <body class="d-flex flex-column" style="background-image: url('https://img.freepik.com/premium-photo/businessman-touching-heart-shape-service-mind-healthcare-business-graph-growth_34200-581.jpg?w=1380');background-size:cover;background-repeat: no-repeat;background-attachment: fixed;">
         <main class="flex-shrink-0">            
             
             <!-- Page content-->
@@ -38,7 +38,7 @@
                                 </div>
                             </a>
 
-                            <h1 class="fw-bolder">Login</h1>
+                            <h1 class="fw-bolder text-success display-3">Login</h1>
                             <p class="lead fw-normal text-muted mb-0">Masukan alamat email dan kata sandi Anda!</p>
                         </div>
                         <div class="row gx-5 justify-content-center">
@@ -90,7 +90,7 @@
 
                                     <div class="py-5 text-center">
                                         <a href="{{ 'beranda' }}" class="btn">
-                                            <i class="fa-solid fa-arrow-left"></i> Kembali
+                                            <i class="fa-solid fa-arrow-left"></i> Beranda
                                         </a>
                                         <small class="text-muted d-block py-5">
                                             {{ env('APP_COPYRIGHT') ?? '' }}
