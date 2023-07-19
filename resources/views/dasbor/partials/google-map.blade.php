@@ -16,7 +16,7 @@
 
             // Map Options
             var mapOptions = {
-                zoom: 18,
+                zoom: 13,
                 center: myLatlng
             };
 
@@ -55,7 +55,7 @@
 
 
                     infowincontent.textContent  = string;
-                    var url = {!! json_encode(url('/assets/img/map-marker.png')) !!}
+                    var url = {!! json_encode(url('/assets/img/red-flag.png')) !!}
                     //marker option
                     var marker = new google.maps.Marker({
                         map: map,

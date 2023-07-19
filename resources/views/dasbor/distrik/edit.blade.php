@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="py-5">
-        <div class="container-fluid">
+        <div class="container">
             <div class="row">
                 @include('dasbor.partials.left-sidebar')
                 <!-- .col end -->
