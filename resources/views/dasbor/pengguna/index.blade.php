@@ -60,4 +60,5 @@
                         </div>
                         <!-- .row end -->
        
-@stop
+                        @stop
+                        @include('dasbor.partials.footer-script-sweetalert')

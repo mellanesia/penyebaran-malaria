@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container px-5">
+    <div class="container-fluid">
         <a class="navbar-brand" href="{{ url('dasbor') ?? '' }}">
             <img src="{{ asset('assets/img/' . env('APP_FAVICON')) }}" alt="logo dasbor" height="34px">
             {{ env('APP_NAME') ?? '' }}

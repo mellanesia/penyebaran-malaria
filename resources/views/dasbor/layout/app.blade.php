@@ -33,7 +33,9 @@
         </main>
 
         <!-- Footer-->
-        @include('dasbor.partials.footer')        
+        @include('dasbor.partials.footer')     
+        @stack('script-footer')                 
+        @include('sweetalert::alert')      
 
     </body>
 </html>

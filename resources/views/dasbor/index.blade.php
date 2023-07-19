@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="py-5">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 @include('dasbor.partials.left-sidebar')
                 <!-- .col end -->
@@ -13,14 +13,14 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h3>Dasbor</h3>
-                                    {{-- <p class="text-muted">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Error soluta illum asperiores at modi eos.</p> --}}
+                                    <p>Selamat datang <span class="fw-bold">{{ Auth::user()->name ?? '' }}.</span></p>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <!-- .row end -->
                     <div class="row mb-3">
-                        <div class="col">
+                        <div class="col-md-2">
                             <div class="card">
                                 <div class="card-body text-center">
                                     <div class="fs-1 fw-bold">
@@ -31,7 +31,7 @@
                             </div>
                         </div>
                         <!-- .col end -->
-                        <div class="col">
+                        <div class="col-md-2">
                             <div class="card">
                                 <div class="card-body text-center">
                                     <div class="fs-1 fw-bold">
@@ -42,7 +42,7 @@
                             </div>
                         </div>
                         <!-- .col end -->
-                        <div class="col">
+                        <div class="col-md-2">
                             <div class="card">
                                 <div class="card-body text-center">
                                     <div class="fs-1 fw-bold">

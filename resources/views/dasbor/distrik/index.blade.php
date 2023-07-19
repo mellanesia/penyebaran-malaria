@@ -2,7 +2,7 @@
 @section('content')
 
     <section class="py-5">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 @include('dasbor.partials.left-sidebar')
                 <!-- .col end -->
@@ -60,7 +60,7 @@
                                                         <form action="{{ route('dasbor.distrik.destroy', $data->id ) }}" method="POST">
                                                             @csrf
                                                             @method('DELETE')
-                                                            <button type="submit" class="btn btn-sm btn-outline-dark">
+                                                            <button type="submit" class="btn btn-sm btn-outline-dark show_confirm">
                                                                 <i class="fa-solid fa-trash"></i>
                                                             </button>
                                                         </form>
@@ -87,4 +87,5 @@
         </div>
     </section>
 
-  @stop
+@stop
+@include('dasbor.partials.footer-script-sweetalert')
