@@ -30,6 +30,24 @@
 
                                         <div class="row">
                                             <div class="col-md-6">
+
+                                                <!-- form group start -->
+                                                <div class="mb-3">
+                                                    <label for="id_kelurahan " class="form-label d-block">Kelurahan</label>
+                                                    <select class="form-control" name="id_kelurahan" id="exampleFormControlSelect1">
+                                                        @foreach($kelurahan as $k)
+                                                            <option value="{{$k->id}}"> {{$k->nama_kelurahan}}</option>
+                                                        @endforeach
+                                                    </select>
+
+                                                    @if ($errors->has('id_kelurahan '))
+                                                        <span class="text-danger" role="alert">
+                                                            <small>{{ $errors->first('id_kelurahan ') }}</small>
+                                                        </span>
+                                                    @endif
+                                                    <!-- error message end -->
+                                                </div>
+                                                <!-- input item end -->
                                                 
                                                 <!-- form group start -->
                                                 <div class="mb-3">
@@ -84,24 +102,6 @@
                                                     @endif
                                                     <!-- error message end -->
                                                 </div>
-
-                                                <!-- form group start -->
-                                                <div class="mb-3">
-                                                    <label for="id_kelurahan " class="form-label d-block">Kelurahan</label>
-                                                    <select class="form-control" name="id_kelurahan" id="exampleFormControlSelect1">
-                                                        @foreach($kelurahan as $k)
-                                                            <option value="{{$k->id}}"> {{$k->nama_kelurahan}}</option>
-                                                        @endforeach
-                                                    </select>
-
-                                                    @if ($errors->has('id_kelurahan '))
-                                                        <span class="text-danger" role="alert">
-                                                            <small>{{ $errors->first('id_kelurahan ') }}</small>
-                                                        </span>
-                                                    @endif
-                                                    <!-- error message end -->
-                                                </div>
-                                                <!-- input item end -->
                                                 
                                             </div>
                                         </div>
