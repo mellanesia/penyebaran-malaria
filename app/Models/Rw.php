@@ -18,4 +18,9 @@ class Rw extends Model
         return $this->belongsTo(Kelurahan::class, 'id_kelurahan');
     }
 
+    // public function getTotalTotalJumlah_kasusAttribute()
+    // {
+    //     return $this->sum('jumlah_kasus');
+    // }
+
 }

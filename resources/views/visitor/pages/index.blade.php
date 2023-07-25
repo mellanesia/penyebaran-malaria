@@ -42,4 +42,30 @@
     </div>
 </section>
 
+
+@include('visitor.partials.grafik')
+
+{{-- Gratik --}}
+<section class="py-5" id="fitur-dasar">
+    <div class="container px-5 my-5">
+        <div class="row gx-5 text-center">
+            <div class="col-lg-12 mb-5 mb-lg-0"><h2 class="fw-bolder mb-5"> <div class="feature bg-success bg-gradient text-white rounded-3 mb-3">
+                <i class="fa-solid fa-map-marker"></i>
+            </div>  Titik Kordinat Kasus Penyakit Malaria</h2></div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12">
+                <div >
+                    @include('dasbor.partials.google-map')
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
 @stop

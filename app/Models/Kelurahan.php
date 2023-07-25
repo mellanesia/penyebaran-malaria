@@ -24,4 +24,5 @@ class Kelurahan extends Model
     }
 
 
+
 }
