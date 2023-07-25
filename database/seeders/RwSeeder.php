@@ -115,5 +115,225 @@ class RwSeeder extends Seeder
 
             ]
         );
+
+        // Kelurahan D
+        Rw::create(
+            [
+                'nama_rw' => '01',
+                'id_kelurahan' => 4, // Gurabesi
+                'jumlah_kasus' => '6',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '02',
+                'id_kelurahan' => 4, // Gurabesi
+                'jumlah_kasus' => '5',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '03',
+                'id_kelurahan' => 4, // Gurabesi
+                'jumlah_kasus' => '25',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        // Kelurahan E
+        Rw::create(
+            [
+                'nama_rw' => '01',
+                'id_kelurahan' => 5, // Gurabesi
+                'jumlah_kasus' => '6',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '02',
+                'id_kelurahan' => 5, // Gurabesi
+                'jumlah_kasus' => '5',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '03',
+                'id_kelurahan' => 5, // Gurabesi
+                'jumlah_kasus' => '50',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+
+        // Kelurahan F
+        Rw::create(
+            [
+                'nama_rw' => '01',
+                'id_kelurahan' => 6, // Gurabesi
+                'jumlah_kasus' => '11',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '02',
+                'id_kelurahan' => 6, // Gurabesi
+                'jumlah_kasus' => '18',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '03',
+                'id_kelurahan' => 6, // Gurabesi
+                'jumlah_kasus' => '18',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+
+        // Kelurahan G
+        Rw::create(
+            [
+                'nama_rw' => '01',
+                'id_kelurahan' => 7, // Gurabesi
+                'jumlah_kasus' => '5',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '02',
+                'id_kelurahan' => 7, // Gurabesi
+                'jumlah_kasus' => '15',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '03',
+                'id_kelurahan' => 7, // Gurabesi
+                'jumlah_kasus' => '13',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        
+
+
+        // Kelurahan H
+        Rw::create(
+            [
+                'nama_rw' => '01',
+                'id_kelurahan' => 8, // Gurabesi
+                'jumlah_kasus' => '11',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '02',
+                'id_kelurahan' => 8, // Gurabesi
+                'jumlah_kasus' => '18',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
+
+        Rw::create(
+            [
+                'nama_rw' => '03',
+                'id_kelurahan' => 8, // Gurabesi
+                'jumlah_kasus' => '24',
+                'latitude' => '',
+                'longitude' => '',
+
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
+
+            ]
+        );
     }
 }

@@ -16,15 +16,13 @@ class DasborController extends Controller
     public function index()
     {
         if(Auth::user()->hasRole('administrator')){
-            $rw = Rw::get()->count();
-            $kelurahan = Kelurahan::get()->count();
-            $distrik = Distrik::get()->count();
+            
             $label = Kelurahan::get();
             $grafik = Kelurahan::select('kelurahans.id',  DB::raw('SUM(rws.jumlah_kasus) as total'))
-            ->leftJoin('rws', 'kelurahans.id', '=', 'rws.id_kelurahan')
-            ->groupBy('kelurahans.id')
-            ->get();
-            return view('dasbor.index',compact('rw','kelurahan','distrik','grafik','label'));
+                                ->leftJoin('rws', 'kelurahans.id', '=', 'rws.id_kelurahan')
+                                ->groupBy('kelurahans.id')
+                                ->get();                                
+            return view('dasbor.index',compact('grafik','label'));
 
 
         } elseif(Auth::user()->hasRole('guest')){

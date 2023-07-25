@@ -63,7 +63,7 @@ class KelurahanSeeder extends Seeder
 
         Kelurahan::create(
             [
-                'id' => 5,
+                'id' => 4,
                 'nama_kelurahan' => 'Imbi',
                 'jumlah_penduduk' => '400',
                 'latitude' => '-2.5183564',
@@ -78,7 +78,7 @@ class KelurahanSeeder extends Seeder
 
         Kelurahan::create(
             [
-                'id' => 6,
+                'id' => 5,
                 'nama_kelurahan' => 'Mandala',
                 'jumlah_penduduk' => '251',
                 'latitude' => '-2.5323015',
@@ -93,7 +93,7 @@ class KelurahanSeeder extends Seeder
 
         Kelurahan::create(
             [
-                'id' => 7,
+                'id' => 6,
                 'nama_kelurahan' => 'Tanjung Ria',
                 'jumlah_penduduk' => '700',
                 'latitude' => '-2.5014588',
@@ -108,7 +108,7 @@ class KelurahanSeeder extends Seeder
 
         Kelurahan::create(
             [
-                'id' => 8,
+                'id' => 7,
                 'nama_kelurahan' => 'Trikora',
                 'jumlah_penduduk' => '600',
                 'latitude' => '-2.5256835',
@@ -123,7 +123,7 @@ class KelurahanSeeder extends Seeder
 
         Kelurahan::create(
             [
-                'id' => 9,
+                'id' => 8,
                 'nama_kelurahan' => 'Kayo Batu',
                 'jumlah_penduduk' => '500',
                 'latitude' => '-2.5318645',
