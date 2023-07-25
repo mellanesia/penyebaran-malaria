@@ -41,7 +41,7 @@
     </div>
 </section>
 
-<div class="grafik" style="background-color: rgb(230, 255, 247)">
+<div class="grafik py-5" style="background-color: rgb(230, 255, 247)">
     @include('visitor.partials.grafik')
 </div>
 
